@@ -34,7 +34,7 @@ function Sidebar() {
         <p>Recent</p>
         {recentItem('reactjs')}
         {recentItem('programming')}
-        {recentItem('software engineering')}
+        {recentItem('softwareengineering')}
         {recentItem('developer')}
       </div>
     </div>
