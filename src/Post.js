@@ -7,8 +7,8 @@ import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import SendOutlinedIcon from "@material-ui/icons/SendOutlined";
 
-function Post = forwardRef(({name, description, message, photoUrl}, ref) => {
-  return  <div className="post">
+const Post = forwardRef(({name, description, message, photoUrl}, ref) => {
+  return  <div ref={ref} className="post">
     <div className="post__header">
       <Avatar src={photoUrl}>{name[0]}</Avatar> 
 
