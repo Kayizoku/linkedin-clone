@@ -22,8 +22,8 @@ function Login() {
       return alert('Please enter your fullname!');
     }
     
-    auth.createUserWithEmailAndPassword(email, password)
-    .then((userAuth) => {
+    auth.createUserWithEmailAndPassword(email, password).then(
+      (userAuth) => {
       userAuth.user.updateProfile({
           displayName: name,
           photoURL: profilePic,    
@@ -36,8 +36,8 @@ function Login() {
           displayName: name,
           photoURL: profilePic,
         }))
-      })
-    })
+      });
+    }).catch(error => alert(error.message));
   };
 
   return (
