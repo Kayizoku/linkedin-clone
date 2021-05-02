@@ -13,9 +13,7 @@ function Login() {
 
   const loginToApp = (e) => {
     e.preventDefault();
-
   };
-
 
   const register = () => {
     if (!name) {
