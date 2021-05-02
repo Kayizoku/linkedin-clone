@@ -1,31 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from './features/userSlice';
+import { auth } from './Firebase';
 import './Login.css';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [profilePic, setProfilePic] = useState('');
+  const dispatch = useDispatch();
 
-  const loginToApp = () => {};
-  const register = () => {};
+  const loginToApp = (e) => {
+    e.preventDefault();
+
+  };
+
+
+  const register = () => {
+    if (!name) {
+      return alert('Please enter your fullname!');
+    }
+    
+    auth.createUserWithEmailAndPassword(email, password)
+    .then((userAuth) => {
+      userAuth.user.updateProfile({
+          displayName: name,
+          photoURL: profilePic,    
+      })
+      .then(() => {
+        dispatch(
+          login({
+          email: userAuth.user.email,
+          uid: userAuth.user.uid,
+          displayName: name,
+          photoURL: profilePic,
+        }))
+      })
+    })
+  };
 
   return (
-  <div className='login'>
-    <img src="https://news.hitb.org/sites/default/files/styles/large/public/field/image/500px-LinkedIn_Logo.svg__1.png?itok=q_1ROVks" alt=""/>
+    <div className='login'>
+      <img src="https://news.hitb.org/sites/default/files/styles/large/public/field/image/500px-LinkedIn_Logo.svg__1.png?itok=q_1ROVks" alt="" />
 
-    <form>
-      <input placeholder='Full Name (required if registering)'type="text"/>
+      <form>
+        <input value={name} onChange={e => setName(e.target.value)} placeholder='Full Name (required if registering)' type="text" />
 
-      <input placeholder='Profile pic URL (optional)'  type=""/>
+        <input value={profilePic} onChange={e => setProfilePic(e.target.value)} placeholder='Profile pic URL (optional)' type="" />
 
-      <input placeholder='Email' type="text"/>
+        <input value={email} onChange={e => setEmail(e.target.value)} placeholder='Email' type="text" />
 
-      <input placeholder='Password' type="password"/>
+        <input value={password} onChange={e => setPassword(e.target.value)} placeholder='Password' type="password" />
 
-      <button type='submit' onClick={loginToApp}>Sign In</button>
-    </form>
+        <button type='submit' onClick={loginToApp}>Sign In</button>
+      </form>
 
-    <p>Not a member?
-      <span className='login__register' onClick={register}>Register Now</span>
-    </p>
-  </div>
+      <p>Not a member?{" "}
+        <span className='login__register' onClick={register}>Register Now</span>
+      </p>
+    </div>
   );
 }
 
