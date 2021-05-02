@@ -7,20 +7,18 @@ export const userSlice = createSlice({
   },
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
+    login: (state, action) => {
       state.value += action.payload;
+    },
+    logout: (state) => {
+      state.user = null;
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = userSlice.actions;
+export const { login, logout } = userSlice.actions;
 
+// Selectors
 export const selectUser = (state) => state.user.user;
 
 export default userSlice.reducer;
