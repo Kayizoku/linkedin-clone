@@ -7,6 +7,7 @@ import { auth } from './Firebase';
 import Header from './Header';
 import Login from './Login';
 import Sidebar from './Sidebar';
+import Widgets from './Widgets';
 
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
         <div className="app__body">
         <Sidebar />
         <Feed />
-        {/* Widgets */}
+        <Widgets />
       </div>
       )}
     </div>
