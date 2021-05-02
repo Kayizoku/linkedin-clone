@@ -7,10 +7,10 @@ import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import SendOutlinedIcon from "@material-ui/icons/SendOutlined";
 
-function Post({name, description, message, PhotoURL}) {
+function Post({name, description, message, photoUrl}) {
   return  <div className="post">
     <div className="post__header">
-      <Avatar />
+      <Avatar src={photoUrl}>{name[0]}</Avatar> 
 
       <div className="post__info">
         <h2>{name}</h2>
@@ -27,9 +27,6 @@ function Post({name, description, message, PhotoURL}) {
       <InputOption Icon={ChatOutlinedIcon} title="Comment" color="gray" />
       <InputOption Icon={ShareOutlinedIcon} title="Share" color="gray" />
       <InputOption Icon={SendOutlinedIcon} title="Send" color="gray" />
-
-
-
     </div>
   </div>
 }

@@ -12,7 +12,6 @@ import { auth } from './Firebase';
 import { logout } from './features/userSlice';
 
 function Header() {
-  
   const dispatch = useDispatch();
   const logoutOfApp = () => {
     dispatch(logout());
@@ -37,7 +36,7 @@ function Header() {
         <HeaderOption Icon={BusinessCenterIcon} title='job' />
         <HeaderOption Icon={ChatIcon} title='Messaging' />
         <HeaderOption Icon={NotificationsIcon} title='Notifications' />
-        <HeaderOption avatar="https://i.imgur.com/KNCUFQJ.png" title='me'
+        <HeaderOption avatar={true} title='me'
           onClick={logoutOfApp} />
       </div>
     </div>
