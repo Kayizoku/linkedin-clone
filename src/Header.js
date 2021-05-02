@@ -7,30 +7,41 @@ import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import ChatIcon from '@material-ui/icons/Chat';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import { useDispatch } from 'react-redux';
+import { auth } from './Firebase';
+import { logout } from './features/userSlice';
 
 function Header() {
-    return (
-        <div className="header">
+  
+  const dispatch = useDispatch();
+  const logoutOfApp = () => {
+    dispatch(logout());
+    auth.signOut();
+  };
 
-            <div className="header__left">
-                <img src="https://www.flaticon.com/svg/static/icons/svg/174/174857.svg" alt=""/>
+  return (
+    <div className="header">
 
-                <div className="header__search">
-                    <SearchIcon />
-                    <input placeholder='Search' type="text"/>
-                </div>
-            </div>
+      <div className="header__left">
+        <img src="https://www.flaticon.com/svg/static/icons/svg/174/174857.svg" alt="" />
 
-            <div className="header__right">
-                <HeaderOption Icon={HomeIcon} title='home' />
-                <HeaderOption Icon={SupervisorAccountIcon} title='My Network'/>
-                <HeaderOption Icon={BusinessCenterIcon} title='job' />
-                <HeaderOption Icon={ChatIcon} title='Messaging' />
-                <HeaderOption Icon={NotificationsIcon} title='Notifications' />
-                <HeaderOption avatar="https://i.imgur.com/KNCUFQJ.png" title='me' />
-            </div>
+        <div className="header__search">
+          <SearchIcon />
+          <input placeholder='Search' type="text" />
         </div>
-    )
+      </div>
+
+      <div className="header__right">
+        <HeaderOption Icon={HomeIcon} title='home' />
+        <HeaderOption Icon={SupervisorAccountIcon} title='My Network' />
+        <HeaderOption Icon={BusinessCenterIcon} title='job' />
+        <HeaderOption Icon={ChatIcon} title='Messaging' />
+        <HeaderOption Icon={NotificationsIcon} title='Notifications' />
+        <HeaderOption avatar="https://i.imgur.com/KNCUFQJ.png" title='me'
+          onClick={logoutOfApp} />
+      </div>
+    </div>
+  )
 }
 
 export default Header
